@@ -105,6 +105,7 @@ h1{margin:0;line-height:1.25}
 .tl-time{text-align:right;padding-top:0;line-height:1.3}
 .tl-time b{display:block;font-size:18px}
 .tl-time span{font-size:12px;color:var(--muted-sky)}
+.tl-time.allday b{font-size:15px;white-space:nowrap}
 .tl-dot{width:20px;height:20px;margin-top:5px;border:3px solid var(--ink);border-radius:50%;background:var(--c);box-shadow:0 0 0 5px var(--night);position:relative;z-index:1}
 .tl-cards{display:grid;gap:14px;min-width:0}
 
@@ -643,33 +644,26 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
       if (!g) { g = {time: ev.time, list: []}; groups.push(g); }
       g.list.push(ev);
     });
+    if (ongoing.length) groups.push({allday: true, list: ongoing}); // 展期中的活動：All day，排在每天最後面
 
     let i = 0;
     let html = `<div class="day-head bounce" style="--i:${i++}">
       <h3>${d.m}月${d.d}日<span class="wd">週${WD[d.wd]}</span></h3>
-      <p>${roc(d)}・${timed.length ? `${timed.length} 項日程` : '沒有定時活動'}${ongoing.length ? `・${ongoing.length} 項展期中` : ''}</p>
+      <p>${roc(d)}・${timed.length + ongoing.length} 項日程</p>
     </div>`;
 
     if (groups.length) {
       html += '<ol class="timeline">' + groups.map(g => {
-        const [a, b] = g.time ? g.time.split('-') : ['當日', '截止'];
-        const c = TYPES[g.list[0].type].color;
+        const [a, b] = g.allday ? ['All day', ''] : g.time ? g.time.split('-') : ['當日', '截止'];
+        const c = g.allday ? 'var(--green)' : TYPES[g.list[0].type].color;
         return `<li class="tl-group bounce" style="--i:${i++}">
-          <div class="tl-time"><b>${a}</b><span>${b}</span></div>
+          <div class="tl-time${g.allday ? ' allday' : ''}"><b>${a}</b>${b ? `<span>${b}</span>` : ''}</div>
           <div class="tl-dot" style="--c:${c}"></div>
           <div class="tl-cards">${g.list.map(ev => card(ev, iso)).join('')}</div>
         </li>`;
       }).join('') + '</ol>';
     } else {
       html += EMPTY;
-    }
-
-    if (ongoing.length) {
-      html += `<div class="bounce" style="--i:${i++}">
-        <h3 class="sub-title">${FLAG}期間限定展期中</h3>
-        <p class="sub-note">圖書館週活動期間皆可參與觀展</p>
-        <div class="ongoing-list">${ongoing.map(ev => card(ev)).join('')}</div>
-      </div>`;
     }
     return html;
   }
