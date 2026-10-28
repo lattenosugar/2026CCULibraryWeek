@@ -93,8 +93,6 @@ h1{margin:0;line-height:1.25}
 .chip.is-active{background:var(--coral);transform:translateY(-3px);box-shadow:0 7px 0 var(--ink);animation:chipPop .55s cubic-bezier(.34,1.3,.64,1)}
 .chip.is-active small,.chip.is-active.we .w{color:var(--ink)}
 .chip.is-active .dot.on{background:var(--paper)}
-.chip.all{background:var(--yellow)}
-.chip.all.is-active{background:var(--green)}
 
 .day-head{margin:16px 0 18px}
 .day-head h3{margin:0;font-size:30px;line-height:1.3}
@@ -140,6 +138,15 @@ h1{margin:0;line-height:1.25}
 .prize-img{aspect-ratio:1;display:grid;place-items:center;margin:4px 0 10px;background:var(--paper);border:3px solid var(--ink);border-radius:22px;overflow:hidden}
 .prize-img>*{display:block;width:84%;height:84%;object-fit:contain;animation:bob 3.2s ease-in-out infinite alternate;animation-delay:calc(var(--i,0) * -.8s)}
 .prize h3{margin:0;font-size:17px;line-height:1.4}
+
+/* ---------- 活動辦法 ---------- */
+#rules{margin-top:56px}
+.rule-list{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:18px}
+.rule{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;align-items:start;padding:14px 14px 16px;background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:24px;box-shadow:0 6px 0 var(--ink)}
+.rule .num{width:46px;height:46px;display:grid;place-items:center;background:var(--c);border:3px solid var(--ink);border-radius:50%;font-size:21px;line-height:1}
+.rule h3{margin:0 0 2px;font-size:17px;line-height:1.5}
+.rule p{margin:0;font-size:15px;line-height:1.8}
+.rule mark{background:var(--yellow);color:var(--ink);padding:0 6px;border-radius:8px}
 
 footer{margin:52px 0 32px;text-align:center;font-size:13px;color:var(--muted-sky)}
 footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px solid var(--ink);border-radius:999px;background:var(--sky)}
@@ -423,7 +430,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
   <section id="prizes" aria-labelledby="prTitle">
     <div class="sec-head">
       <h2 id="prTitle">抽獎品項</h2>
-      <p>共 4 項好禮，等你來抽</p>
+      <p>多項好禮，等你來抽！</p>
     </div>
     <div class="prize-grid">
       <article class="prize" style="--c:var(--sky);--i:0">
@@ -494,6 +501,37 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     </div>
   </section>
 
+  <!-- 活動辦法 -->
+  <section id="rules" aria-labelledby="ruTitle">
+    <div class="sec-head">
+      <h2 id="ruTitle">活動辦法</h2>
+      <p>集點、投遞、等開獎，三步驟就搞定</p>
+    </div>
+    <ol class="rule-list">
+      <li class="rule" style="--c:var(--coral);--i:0">
+        <span class="num" aria-hidden="true">1</span>
+        <div>
+          <h3>索取集點卡</h3>
+          <p>各活動現場皆可索取集點卡，參加活動、觀展或完成展區任務即可集點。</p>
+        </div>
+      </li>
+      <li class="rule" style="--c:var(--yellow);--i:1">
+        <span class="num" aria-hidden="true">2</span>
+        <div>
+          <h3>投入摸彩箱</h3>
+          <p><mark>集滿6點</mark>並填妥個人資料，於<mark>115/12/10前</mark>投入圖書館櫃檯摸彩箱，即有機會獲得木質藍芽音箱、Kodak底片相機、運動手環等好禮！</p>
+        </div>
+      </li>
+      <li class="rule" style="--c:var(--sky);--i:2">
+        <span class="num" aria-hidden="true">3</span>
+        <div>
+          <h3>公開抽獎</h3>
+          <p><mark>115/12/14</mark>公開抽獎，得獎名單公布於圖書館官網及社群平台。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
   <footer>
     <span class="bar" aria-hidden="true"></span>
     活動資訊如有異動，以圖書館公告為準。
@@ -548,7 +586,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     if (HIDDEN.includes(dt.toISOString().slice(0,10))) continue;
     DAYS.push({iso: dt.toISOString().slice(0,10), y: dt.getUTCFullYear(), m: dt.getUTCMonth()+1, d: dt.getUTCDate(), wd: dt.getUTCDay()});
   }
-  const KEYS = [...DAYS.map(d => d.iso), 'all'];
+  const KEYS = DAYS.map(d => d.iso);
   const dayOf = iso => DAYS.find(d => d.iso === iso);
   const inRange = (ev, iso) => ev.s <= iso && iso <= ev.e;
   const timedOn = iso => EVENTS.filter(ev => (ev.time || ev.deadline) && inRange(ev, iso)).sort((a,b) => (a.time || '99').localeCompare(b.time || '99') || a.id - b.id);
@@ -636,15 +674,6 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     return html;
   }
 
-  function renderAll() {
-    const list = EVENTS.filter(ev => !ev.time && !ev.deadline).sort((a,b) => a.e.localeCompare(b.e) || a.id - b.id);
-    return `<div class="day-head bounce" style="--i:0">
-        <h3>期間展限定</h3>
-        <p>圖書館週活動期間皆可參與觀展</p>
-      </div>
-      <div class="ongoing-list">${list.map((ev, k) => `<div class="bounce" style="--i:${k+1}">${card(ev)}</div>`).join('')}</div>`;
-  }
-
   /* ---------- 日期列 ---------- */
   strip.innerHTML = DAYS.map(d => {
     const has = timedOn(d.iso).length > 0;
@@ -653,9 +682,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
       aria-label="${d.m}月${d.d}日 週${WD[d.wd]}${has ? '，有定時活動' : ''}">
       <small>${d.m}月</small><span class="n">${d.d}</span><span class="w">週${WD[d.wd]}</span><i class="dot${has ? ' on' : ''}"></i>
     </button>`;
-  }).join('') + `<button class="chip all" role="tab" id="tab-all" data-key="all" aria-selected="false" aria-controls="panel" tabindex="-1" aria-label="期間展限定">
-      <small>期間</small><span class="n">展</span><span class="w">限定</span><i class="dot"></i>
-    </button>`;
+  }).join('');
 
   function select(key, opts = {}) {
     if (!KEYS.includes(key)) return;
@@ -675,7 +702,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
 
     current = key;
     panel.setAttribute('aria-labelledby', 'tab-' + key);
-    panel.innerHTML = key === 'all' ? renderAll() : renderDay(key);
+    panel.innerHTML = renderDay(key);
 
     if (!opts.instant) {
       const wrap = strip.parentElement;
@@ -730,7 +757,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
   /* ---------- 初始日期 ---------- */
   const todayIso = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
   const nextDay = DAYS.find(d => d.iso >= todayIso);
-  const first = nextDay ? nextDay.iso : (todayIso <= '2027-01-31' ? 'all' : DAYS[0].iso);
+  const first = nextDay ? nextDay.iso : DAYS[0].iso;
   select(first, {instant: true, force: true});
 
   /* ---------- 獎品卡片進場 ---------- */
@@ -738,7 +765,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     const po = new IntersectionObserver(es => es.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('bounce'); po.unobserve(en.target); }
     }), {threshold: .3});
-    document.querySelectorAll('.prize').forEach(el => po.observe(el));
+    document.querySelectorAll('.prize, .rule').forEach(el => po.observe(el));
   }
 
   /* ---------- 星空背景 ---------- */
