@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#232B52">
+<meta name="color-scheme" content="light">
+<meta name="description" content="離線星球 OFFLINE : PLANET｜2026圖書館週 Library Week：115/11/30 – 12/10 活動日程與時間軸。">
+<title>離線星球 OFFLINE : PLANET｜2026圖書館週</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFCF6;
+  --ink:#3E3A39;
+  --coral:#F2A497;
+  --yellow:#F6D27A;
+  --sky:#A8D3E6;
+  --green:#B9DAA5;
+  --muted:#6B6563;
+  --nav-h:58px;
+  --night:#232B52;
+  --muted-sky:#C5CBE0;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--night);color:var(--paper);
+  font-family:"Huninn","jf-openhuninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-weight:400;font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,b,strong{font-weight:400}
+[hidden]{display:none !important}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:12px}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+.skip{position:absolute;left:-999px;top:8px;color:var(--ink);background:var(--yellow);border:3px solid var(--ink);border-radius:999px;padding:4px 14px;z-index:200}
+.skip:focus{left:12px}
+
+/* ---------- 星空底 ---------- */
+.sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--night)}
+.sky svg{display:block;width:100%;height:100%}
+.st{transform-box:fill-box;transform-origin:center;animation:twk 3.6s ease-in-out infinite}
+@keyframes twk{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.6)}}
+
+/* ---------- 頂端固定選單 ---------- */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav-h);background:var(--paper);border-bottom:3px solid var(--ink);z-index:100}
+.nav-in{height:100%;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{display:flex;align-items:center;gap:7px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand .bt{display:grid;line-height:1.15}
+.brand .bt b{font-size:17px}
+.brand .bt small{font-size:9.5px;letter-spacing:.06em;color:var(--muted)}
+.brand svg{width:28px;height:28px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand svg .pg{fill:var(--yellow)}
+.nav nav{display:flex;gap:4px}
+.nav nav a{color:var(--ink);text-decoration:none;font-size:14px;padding:3px 9px;border:3px solid transparent;border-radius:999px;transition:transform .2s cubic-bezier(.34,1.56,.64,1),background-color .2s}
+.nav nav a:active{transform:scale(.92)}
+.nav nav a.on{background:var(--yellow);border-color:var(--ink)}
+.brand:active svg{transform:rotate(-8deg)}
+
+main.wrap{padding-top:calc(var(--nav-h) + 16px)}
+
+/* ---------- 首頁 ---------- */
+.art-card{border:3px solid var(--ink);border-radius:32px;overflow:hidden;box-shadow:0 6px 0 var(--ink);background:#1E2447}
+.hero-svg{display:block;width:100%;height:auto}
+.hero-svg text{font-family:inherit}
+.title-block{text-align:center;padding:28px 0 4px}
+.date-pill{display:inline-block;color:var(--ink);margin:0 0 12px;padding:1px 16px;background:var(--coral);border:3px solid var(--ink);border-radius:999px;font-size:14px;letter-spacing:.04em}
+h1{margin:0;line-height:1.25}
+.t1{display:inline-block;font-size:clamp(46px,14vw,68px);letter-spacing:.04em;padding:0 .1em;border-bottom:6px solid var(--yellow);border-radius:4px}
+.en{display:block;margin-top:10px;font-size:clamp(15px,4.8vw,21px);letter-spacing:.2em;color:var(--sky)}
+.t2{display:block;margin-top:20px;font-size:clamp(26px,8vw,36px);letter-spacing:.06em}
+.en2{display:block;font-size:clamp(16px,5vw,22px);letter-spacing:.16em;color:var(--yellow)}
+.lead{margin:16px auto 0;max-width:30em;font-size:15px;color:var(--muted-sky)}
+
+/* ---------- 日程 ---------- */
+#schedule{margin-top:40px}
+.sec-head h2{margin:0;font-size:30px;line-height:1.3}
+.sec-head p{margin:2px 0 0;font-size:14px;color:var(--muted-sky)}
+.strip-wrap{position:sticky;top:var(--nav-h);z-index:50;background:rgba(35,43,82,.94);margin:10px -16px 0;padding:8px 16px 0}
+.day-strip{display:flex;gap:10px;overflow-x:auto;padding:10px 4px 14px;scrollbar-width:none;position:relative;-webkit-overflow-scrolling:touch}
+.day-strip::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;width:60px;padding:6px 0 8px;display:grid;justify-items:center;line-height:1.25;font:inherit;color:var(--ink);background:var(--paper);border:3px solid var(--ink);border-radius:20px;box-shadow:0 4px 0 var(--ink);cursor:pointer;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s,background-color .2s}
+.chip small{font-size:11px;color:var(--muted)}
+.chip .n{font-size:25px;line-height:1.2}
+.chip .w{font-size:12px}
+.chip.we .w{color:#B5483A}
+.chip .dot{width:9px;height:9px;margin-top:3px;border-radius:50%;border:2px solid transparent}
+.chip .dot.on{background:var(--coral);border-color:var(--ink)}
+.chip:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.chip.is-active{background:var(--coral);transform:translateY(-3px);box-shadow:0 7px 0 var(--ink);animation:chipPop .55s cubic-bezier(.34,1.3,.64,1)}
+.chip.is-active small,.chip.is-active.we .w{color:var(--ink)}
+.chip.is-active .dot.on{background:var(--paper)}
+.chip.all{background:var(--yellow)}
+.chip.all.is-active{background:var(--green)}
+
+.day-head{margin:16px 0 18px}
+.day-head h3{margin:0;font-size:30px;line-height:1.3}
+.day-head .wd{display:inline-block;color:var(--ink);margin-left:8px;padding:0 10px;font-size:14px;vertical-align:middle;background:var(--sky);border:2.5px solid var(--ink);border-radius:999px}
+.day-head p{margin:2px 0 0;font-size:14px;color:var(--muted-sky)}
+
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:79px;top:16px;bottom:30px;border-left:3px dashed #8E96B8;transform:translateX(-50%)}
+.tl-group{display:grid;grid-template-columns:58px 20px 1fr;column-gap:10px;align-items:start;margin-bottom:20px}
+.tl-time{text-align:right;padding-top:0;line-height:1.3}
+.tl-time b{display:block;font-size:18px}
+.tl-time span{font-size:12px;color:var(--muted-sky)}
+.tl-dot{width:20px;height:20px;margin-top:5px;border:3px solid var(--ink);border-radius:50%;background:var(--c);box-shadow:0 0 0 5px var(--night);position:relative;z-index:1}
+.tl-cards{display:grid;gap:14px;min-width:0}
+
+.ev{background:var(--c);color:var(--ink);border:3px solid var(--ink);border-radius:22px;padding:12px 14px 14px;box-shadow:4px 5px 0 var(--ink)}
+.ev-top{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:0 10px 0 6px;font-size:12px;background:var(--paper);border:2.5px solid var(--ink);border-radius:999px}
+.badge svg{width:16px;height:16px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.tag{padding:0 9px;font-size:12px;border:2.5px dashed var(--ink);border-radius:999px}
+.tag.live{background:var(--ink);color:var(--paper);border-style:solid;display:inline-flex;align-items:center;gap:5px}
+.tag.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);animation:pulse 1.2s ease-in-out infinite}
+.ev-title{margin:0;font-size:18px;line-height:1.5}
+.ev-place,.ev-link{display:flex;gap:6px;align-items:flex-start;margin:8px 0 0;font-size:14px;line-height:1.5}
+.ev-link a{color:var(--ink);text-underline-offset:3px}
+.ev-desc{margin:12px 0 0;padding-top:12px;border-top:2.5px dashed var(--ink);font-size:14px;line-height:1.8}
+.ev-place svg,.ev-link svg{flex:0 0 auto;width:16px;height:16px;margin-top:3px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.sub-title{display:flex;align-items:center;gap:8px;margin:30px 0 4px;font-size:19px}
+.sub-title svg{width:24px;height:24px;fill:var(--green);stroke:var(--paper);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sub-note{margin:0 0 14px;font-size:13px;color:var(--muted-sky)}
+.ongoing-list{display:grid;gap:14px}
+
+.empty{text-align:center;padding:18px 16px 20px;border:3px dashed #8E96B8;border-radius:26px}
+.empty svg{width:140px;height:auto}
+.empty p{margin:6px 0 0;font-size:15px}
+
+/* ---------- 抽獎 ---------- */
+#prizes{margin-top:56px}
+.prize-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px;margin-top:22px}
+.prize{position:relative;color:var(--ink);background:var(--c);border:3px solid var(--ink);border-radius:26px;box-shadow:0 6px 0 var(--ink);padding:14px 10px 14px;text-align:center}
+.prize .no{position:absolute;top:-13px;left:14px;padding:0 10px;font-size:12px;line-height:1.7;background:var(--paper);border:2.5px solid var(--ink);border-radius:999px}
+.prize-img{aspect-ratio:1;display:grid;place-items:center;margin:4px 0 10px;background:var(--paper);border:3px solid var(--ink);border-radius:22px;overflow:hidden}
+.prize-img>*{display:block;width:84%;height:84%;object-fit:contain;animation:bob 3.2s ease-in-out infinite alternate;animation-delay:calc(var(--i,0) * -.8s)}
+.prize h3{margin:0;font-size:17px;line-height:1.4}
+
+footer{margin:52px 0 32px;text-align:center;font-size:13px;color:var(--muted-sky)}
+footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px solid var(--ink);border-radius:999px;background:var(--sky)}
+
+/* ---------- 動畫 ---------- */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{from{transform:translateX(-10px)}to{transform:translateX(18px)}}
+@keyframes bob{from{transform:translateY(-4px)}to{transform:translateY(5px)}}
+@keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(1.8deg)}}
+@keyframes flick{from{transform:scaleY(.75)}to{transform:scaleY(1.25)}}
+@keyframes tw{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.5) rotate(30deg)}}
+@keyframes lit{0%,100%{fill:#F6D27A}50%{fill:#FFFCF6}}
+@keyframes wave{from{transform:scaleX(1) skewY(0)}to{transform:scaleX(.72) skewY(6deg)}}
+@keyframes flapL{from{transform:rotate(-6deg)}to{transform:rotate(16deg)}}
+@keyframes flapR{from{transform:rotate(6deg)}to{transform:rotate(-16deg)}}
+@keyframes dash{to{stroke-dashoffset:-18}}
+@keyframes zz{from{transform:translateY(0);opacity:.4}to{transform:translateY(-6px);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6)}}
+@keyframes chipPop{
+  0%{transform:translateY(0) scale(.88)}
+  45%{transform:translateY(-14px) scale(1.1)}
+  70%{transform:translateY(1px) scale(.97)}
+  100%{transform:translateY(-3px) scale(1)}
+}
+@keyframes bounceIn{
+  0%{opacity:0;transform:translateY(28px) scale(.9)}
+  55%{opacity:1;transform:translateY(-7px) scale(1.02)}
+  78%{transform:translateY(2px) scale(.995)}
+  100%{opacity:1;transform:none}
+}
+
+.planet{animation:bob 4s ease-in-out infinite alternate}
+.gal{transform-origin:0 0;animation:spin 70s linear infinite}
+.ringwob{transform-origin:0 0;animation:ringwob 5s ease-in-out infinite alternate}
+@keyframes ringwob{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.drift{animation:drift 14s ease-in-out infinite alternate}
+.drift.d2{animation-duration:11s;animation-direction:alternate-reverse}
+.drift.d3{animation-duration:18s}
+.rocket{animation:bob 3s ease-in-out infinite alternate}
+.flame{transform-box:fill-box;transform-origin:50% 0;animation:flick .32s ease-in-out infinite alternate}
+.trail{stroke-dasharray:2 7;animation:dash 1.4s linear infinite}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 2.8s ease-in-out infinite}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 4.6s ease-in-out infinite alternate}
+.win{fill:#F6D27A}
+.lit{animation:lit 4.5s ease-in-out infinite}
+.flag{transform-box:fill-box;transform-origin:0 50%;animation:wave 1.8s ease-in-out infinite alternate}
+.minute{transform-origin:180px 92px;animation:spin 36s linear infinite}
+.hour{transform-origin:180px 92px;animation:spin 432s linear infinite}
+.bird{animation:bob 2.4s ease-in-out infinite alternate}
+.wl{transform-box:fill-box;transform-origin:100% 100%;animation:flapL .65s ease-in-out infinite alternate}
+.wr{transform-box:fill-box;transform-origin:0 100%;animation:flapR .65s ease-in-out infinite alternate}
+.zz{animation:zz 1.6s ease-in-out infinite alternate}
+
+.bounce{animation:bounceIn .65s cubic-bezier(.34,1.45,.64,1) both;animation-delay:calc(var(--i,0) * 80ms)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+}
+
+@media (min-width:560px){
+  .tl-group{grid-template-columns:70px 20px 1fr}
+  .timeline::before{left:91px}
+  .ev-title{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<a class="skip" href="#schedule">跳到活動日程</a>
+
+<header class="nav">
+  <div class="nav-in wrap">
+    <a class="brand" href="#home" aria-label="離線星球 OFFLINE : PLANET，回到首頁">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="pg" d="M2 6c4-2 8-2 10 1 2-3 6-3 10-1v13c-4-2-8-2-10 1-2-3-6-3-10-1z"/><path d="M12 7v13"/></svg>
+      <span class="bt"><b>離線星球</b><small>OFFLINE : PLANET</small></span>
+    </a>
+    <nav aria-label="主選單">
+      <a href="#home" data-sec="home">首頁</a>
+      <a href="#schedule" data-sec="schedule">日程</a>
+      <a href="#prizes" data-sec="prizes">抽獎</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 首頁 -->
+  <section id="home">
+    <div class="art-card" role="img" aria-label="繪本風插圖：銀河與星座夜空下的圖書館大樓、飛行的火箭、會拍翅膀的書、環狀星球與大樹">
+      <svg class="hero-svg" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <g id="win">
+            <rect width="22" height="20" rx="6" stroke="#3E3A39" stroke-width="2.5"/>
+            <path d="M11 0V20" fill="none" stroke="#3E3A39" stroke-width="2"/>
+          </g>
+          <path id="star" d="M0 -7 L2 -2 L7 0 L2 2 L0 7 L-2 2 L-7 0 L-2 -2 Z"/>
+        </defs>
+
+        <!-- 外太空 -->
+        <rect width="360" height="320" fill="#1E2447"/>
+
+        <!-- 銀河帶 -->
+        <g transform="rotate(-18 180 130)">
+          <rect x="-80" y="95" width="520" height="70" rx="35" fill="#2A3263"/>
+          <rect x="-60" y="110" width="480" height="40" rx="20" fill="#363F7A"/>
+        </g>
+        <circle cx="347.3" cy="66.2" r="0.9" fill="#F6D27A"/><circle cx="273.3" cy="101.7" r="1.2" fill="#F6D27A"/><circle cx="288.1" cy="103.9" r="1.2" fill="#F2A497"/><circle cx="58.2" cy="166.1" r="0.7" fill="#F2A497"/><circle cx="317.8" cy="99.1" r="0.8" fill="#A8D3E6"/><circle cx="67.1" cy="138.5" r="0.6" fill="#A8D3E6"/><circle cx="347.1" cy="99.5" r="0.9" fill="#F6D27A"/><circle cx="278.4" cy="122.0" r="0.9" fill="#FFFCF6"/><circle cx="335.5" cy="80.5" r="1.0" fill="#F6D27A"/><circle cx="83.5" cy="164.0" r="1.3" fill="#F2A497"/><circle cx="299.2" cy="65.0" r="0.9" fill="#F2A497"/><circle cx="93.9" cy="160.2" r="1.2" fill="#FFFCF6"/><circle cx="337.7" cy="85.3" r="0.9" fill="#F6D27A"/><circle cx="326.8" cy="72.2" r="0.6" fill="#F2A497"/><circle cx="302.2" cy="89.6" r="1.3" fill="#A8D3E6"/><circle cx="11.1" cy="189.5" r="0.9" fill="#A8D3E6"/><circle cx="36.9" cy="159.2" r="0.7" fill="#F2A497"/><circle cx="4.3" cy="211.1" r="1.1" fill="#FFFCF6"/><circle cx="268.8" cy="94.2" r="0.9" fill="#A8D3E6"/><circle cx="349.9" cy="72.8" r="1.1" fill="#F6D27A"/><circle cx="288.2" cy="93.7" r="0.9" fill="#F6D27A"/><circle cx="338.0" cy="95.0" r="1.1" fill="#F2A497"/><circle cx="284.2" cy="105.7" r="1.2" fill="#A8D3E6"/><circle cx="88.7" cy="141.9" r="0.8" fill="#FFFCF6"/><circle cx="60.8" cy="192.7" r="0.9" fill="#FFFCF6"/><circle cx="349.6" cy="77.0" r="0.9" fill="#F2A497"/><circle cx="288.0" cy="78.5" r="0.8" fill="#F2A497"/><circle cx="51.2" cy="189.9" r="0.6" fill="#F6D27A"/><circle cx="40.3" cy="165.7" r="0.8" fill="#F2A497"/><circle cx="257.1" cy="87.9" r="1.3" fill="#F6D27A"/><circle cx="339.5" cy="68.2" r="1.2" fill="#A8D3E6"/><circle cx="291.2" cy="67.2" r="1.2" fill="#F2A497"/><circle cx="304.0" cy="69.7" r="1.0" fill="#F2A497"/><circle cx="346.8" cy="91.6" r="1.4" fill="#F2A497"/><circle cx="5.2" cy="191.7" r="0.9" fill="#F6D27A"/><circle cx="321.7" cy="95.9" r="1.2" fill="#FFFCF6"/><circle cx="51.5" cy="169.2" r="1.2" fill="#F2A497"/><circle cx="71.0" cy="178.1" r="1.3" fill="#A8D3E6"/><circle cx="62.1" cy="155.4" r="0.6" fill="#F2A497"/><circle cx="103.7" cy="170.1" r="1.2" fill="#FFFCF6"/><circle cx="269.7" cy="77.7" r="1.3" fill="#F6D27A"/><circle cx="36.3" cy="188.9" r="0.9" fill="#FFFCF6"/><circle cx="26.6" cy="183.5" r="1.1" fill="#FFFCF6"/><circle cx="321.2" cy="97.8" r="1.4" fill="#A8D3E6"/><circle cx="31.6" cy="159.8" r="0.8" fill="#A8D3E6"/><circle cx="67.2" cy="151.4" r="1.3" fill="#FFFCF6"/><circle cx="259.9" cy="86.0" r="0.6" fill="#F6D27A"/><circle cx="49.1" cy="164.5" r="1.3" fill="#F2A497"/><circle cx="327.4" cy="87.1" r="1.1" fill="#FFFCF6"/><circle cx="91.8" cy="149.4" r="1.1" fill="#FFFCF6"/><circle cx="294.7" cy="102.0" r="0.7" fill="#A8D3E6"/><circle cx="60.2" cy="151.4" r="0.9" fill="#FFFCF6"/><circle cx="56.0" cy="191.0" r="1.1" fill="#FFFCF6"/><circle cx="352.0" cy="54.0" r="1.0" fill="#F6D27A"/><circle cx="265.3" cy="94.5" r="1.1" fill="#F6D27A"/><circle cx="343.5" cy="54.9" r="1.3" fill="#FFFCF6"/><circle cx="344.3" cy="78.0" r="1.4" fill="#F6D27A"/><circle cx="41.6" cy="181.1" r="1.3" fill="#FFFCF6"/><circle cx="43.0" cy="168.7" r="0.6" fill="#FFFCF6"/><circle cx="309.7" cy="109.5" r="0.7" fill="#FFFCF6"/><circle cx="318.8" cy="75.8" r="0.6" fill="#FFFCF6"/><circle cx="288.4" cy="103.1" r="1.4" fill="#F6D27A"/><circle cx="332.1" cy="88.8" r="1.1" fill="#A8D3E6"/><circle cx="267.4" cy="78.7" r="1.3" fill="#FFFCF6"/><circle cx="26.6" cy="199.3" r="1.0" fill="#F6D27A"/><circle cx="7.4" cy="185.6" r="1.1" fill="#F6D27A"/><circle cx="284.3" cy="113.2" r="0.7" fill="#FFFCF6"/><circle cx="341.6" cy="74.4" r="1.3" fill="#F6D27A"/><circle cx="327.6" cy="90.1" r="1.2" fill="#A8D3E6"/><circle cx="329.4" cy="90.0" r="0.7" fill="#F2A497"/><circle cx="303.8" cy="70.2" r="1.2" fill="#F6D27A"/><circle cx="73.3" cy="158.1" r="1.2" fill="#F2A497"/><circle cx="347.9" cy="66.5" r="1.3" fill="#FFFCF6"/><circle cx="262.3" cy="108.5" r="0.7" fill="#A8D3E6"/><circle cx="26.9" cy="173.8" r="1.3" fill="#F2A497"/><circle cx="314.1" cy="85.3" r="0.6" fill="#FFFCF6"/><circle cx="277.5" cy="74.3" r="0.8" fill="#FFFCF6"/><circle cx="330.2" cy="58.2" r="1.1" fill="#FFFCF6"/><circle cx="335.4" cy="88.2" r="1.3" fill="#FFFCF6"/><circle cx="51.9" cy="157.8" r="0.9" fill="#A8D3E6"/>
+        <circle cx="300.9" cy="91.2" r="1.2" fill="#F6D27A"/><circle cx="345.9" cy="244.3" r="1.0" fill="#FFFCF6"/><circle cx="300.7" cy="33.7" r="1.0" fill="#FFFCF6" class="tw" style="animation-delay:-2.6s;animation-duration:3.9s"/><circle cx="259.6" cy="9.7" r="1.0" fill="#F6D27A"/><circle cx="72.5" cy="43.2" r="0.9" fill="#FFFCF6"/><circle cx="9.6" cy="124.4" r="1.1" fill="#F6D27A" class="tw" style="animation-delay:-2.6s;animation-duration:2.5s"/><circle cx="275.5" cy="15.3" r="1.7" fill="#A8D3E6" class="tw" style="animation-delay:-0.5s;animation-duration:3.6s"/><circle cx="342.9" cy="74.3" r="1.4" fill="#FFFCF6"/><circle cx="75.3" cy="52.6" r="1.8" fill="#F6D27A" class="tw" style="animation-delay:-1.0s;animation-duration:2.5s"/><circle cx="275.3" cy="234.9" r="1.5" fill="#F6D27A" class="tw" style="animation-delay:-3.0s;animation-duration:4.1s"/><circle cx="266.0" cy="18.9" r="1.7" fill="#FFFCF6" class="tw" style="animation-delay:-0.6s;animation-duration:4.2s"/><circle cx="49.3" cy="153.9" r="0.8" fill="#FFFCF6"/><circle cx="74.4" cy="44.9" r="1.8" fill="#A8D3E6" class="tw" style="animation-delay:-1.0s;animation-duration:2.9s"/><circle cx="278.8" cy="26.1" r="1.1" fill="#FFFCF6"/><circle cx="25.7" cy="181.6" r="1.8" fill="#FFFCF6" class="tw" style="animation-delay:-2.3s;animation-duration:2.2s"/><circle cx="87.7" cy="210.0" r="1.1" fill="#FFFCF6"/><circle cx="278.4" cy="58.7" r="1.8" fill="#F6D27A"/><circle cx="36.3" cy="34.7" r="1.7" fill="#FFFCF6" class="tw" style="animation-delay:-0.4s;animation-duration:3.5s"/><circle cx="28.1" cy="209.3" r="1.3" fill="#F6D27A"/><circle cx="55.2" cy="247.2" r="1.7" fill="#F2A497"/><circle cx="303.0" cy="51.6" r="0.9" fill="#FFFCF6" class="tw" style="animation-delay:-1.9s;animation-duration:3.9s"/><circle cx="105.4" cy="8.8" r="1.4" fill="#A8D3E6"/><circle cx="302.7" cy="124.8" r="1.2" fill="#FFFCF6"/><circle cx="339.0" cy="115.0" r="0.9" fill="#A8D3E6" class="tw" style="animation-delay:-2.6s;animation-duration:3.7s"/><circle cx="8.7" cy="100.3" r="1.3" fill="#F2A497"/><circle cx="306.7" cy="91.2" r="1.0" fill="#A8D3E6" class="tw" style="animation-delay:-2.5s;animation-duration:3.2s"/><circle cx="96.4" cy="17.2" r="1.3" fill="#A8D3E6"/><circle cx="60.9" cy="93.9" r="0.9" fill="#F2A497"/><circle cx="35.6" cy="36.6" r="1.9" fill="#A8D3E6"/><circle cx="339.5" cy="96.9" r="1.7" fill="#F6D27A"/><circle cx="302.3" cy="237.2" r="1.5" fill="#A8D3E6"/><circle cx="89.0" cy="142.9" r="1.8" fill="#FFFCF6" class="tw" style="animation-delay:-0.5s;animation-duration:3.6s"/><circle cx="78.5" cy="88.0" r="1.4" fill="#A8D3E6"/><circle cx="30.3" cy="40.9" r="1.2" fill="#F6D27A"/><circle cx="13.4" cy="16.6" r="1.4" fill="#A8D3E6" class="tw" style="animation-delay:-2.3s;animation-duration:3.9s"/><circle cx="311.0" cy="197.2" r="0.9" fill="#F6D27A"/><circle cx="23.8" cy="34.8" r="1.6" fill="#F6D27A"/><circle cx="87.3" cy="231.0" r="1.3" fill="#FFFCF6" class="tw" style="animation-delay:-1.4s;animation-duration:2.5s"/><circle cx="314.2" cy="102.2" r="1.1" fill="#A8D3E6" class="tw" style="animation-delay:-2.9s;animation-duration:3.1s"/><circle cx="26.2" cy="220.9" r="1.9" fill="#FFFCF6" class="tw" style="animation-delay:-0.5s;animation-duration:2.8s"/><circle cx="168.4" cy="13.7" r="1.0" fill="#FFFCF6" class="tw" style="animation-delay:-2.4s;animation-duration:2.4s"/><circle cx="292.9" cy="193.1" r="1.2" fill="#A8D3E6"/><circle cx="295.8" cy="98.1" r="1.0" fill="#FFFCF6"/><circle cx="316.3" cy="210.5" r="0.8" fill="#F2A497"/><circle cx="52.1" cy="29.6" r="1.2" fill="#FFFCF6" class="tw" style="animation-delay:-0.3s;animation-duration:3.2s"/><circle cx="256.1" cy="45.1" r="1.9" fill="#F6D27A"/>
+
+        <!-- 螺旋星系 -->
+        <g transform="translate(46 52) scale(.85)">
+          <g class="gal">
+            <circle r="11" fill="#363F7A"/>
+            <g id="arm">
+              <path d="M3 0C3-11 18-15 28-7C37 1 33 17 19 23" fill="none" stroke="#A8D3E6" stroke-width="5" stroke-linecap="round"/>
+              <path d="M3 0C3-11 18-15 28-7C37 1 33 17 19 23" fill="none" stroke="#FFFCF6" stroke-width="1.6" stroke-linecap="round"/>
+            </g>
+            <use href="#arm" transform="rotate(180)"/>
+            <circle r="5.5" fill="#F6D27A"/>
+            <circle cx="-30" cy="-12" r="1.6" fill="#FFFCF6"/><circle cx="31" cy="12" r="1.6" fill="#FFFCF6"/><circle cx="8" cy="-30" r="1.4" fill="#F2A497"/>
+          </g>
+        </g>
+
+        <!-- 星座 -->
+        <g fill="none" stroke="#FFFCF6" stroke-width="1.3" stroke-dasharray="3 3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 26L118 40L130 26L146 48M118 40L124 62"/>
+          <path d="M262 96L280 112L298 98L316 122M280 112L286 132"/>
+        </g>
+        <circle cx="100" cy="26" r="2.6" fill="#F6D27A" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-0.2s"/><circle cx="118" cy="40" r="2.6" fill="#FFFCF6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-1.1s"/><circle cx="130" cy="26" r="2.6" fill="#F6D27A" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-2s"/><circle cx="146" cy="48" r="2.6" fill="#A8D3E6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-0.7s"/><circle cx="124" cy="62" r="2.6" fill="#FFFCF6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-1.6s"/>
+        <circle cx="262" cy="96" r="2.6" fill="#A8D3E6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-0.4s"/><circle cx="280" cy="112" r="2.6" fill="#F6D27A" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-1.5s"/><circle cx="298" cy="98" r="2.6" fill="#FFFCF6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-2.3s"/><circle cx="316" cy="122" r="2.6" fill="#F2A497" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-0.9s"/><circle cx="286" cy="132" r="2.6" fill="#FFFCF6" stroke="#FFFCF6" stroke-width="1" class="tw" style="animation-delay:-1.9s"/>
+
+        <!-- 星球 -->
+        <g transform="translate(290 62)">
+          <g class="planet">
+            <g class="ringwob"><g transform="rotate(-16)">
+              <path d="M-40 0 A40 11 0 0 1 40 0" fill="none" stroke="#3E3A39" stroke-width="9" stroke-linecap="round"/>
+              <path d="M-40 0 A40 11 0 0 1 40 0" fill="none" stroke="#F6D27A" stroke-width="3.6" stroke-linecap="round"/>
+            </g></g>
+            <circle r="22" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+            <circle cx="-10" cy="-14" r="3.2" fill="#F6D27A"/>
+            <circle cx="11" cy="-14" r="2.2" fill="#F6D27A"/>
+            <circle cx="-16" cy="3" r="2" fill="#F6D27A"/>
+            <circle cx="-7" cy="-6" r="2.4" fill="#3E3A39"/>
+            <circle cx="7" cy="-6" r="2.4" fill="#3E3A39"/>
+            <ellipse cx="-12" cy="0" rx="3.4" ry="2.2" fill="#FFFCF6"/>
+            <ellipse cx="12" cy="0" rx="3.4" ry="2.2" fill="#FFFCF6"/>
+            <path d="M-3 -1 Q0 3 3 -1" fill="none" stroke="#3E3A39" stroke-width="2.2" stroke-linecap="round"/>
+            <g class="ringwob"><g transform="rotate(-16)">
+              <path d="M-40 0 A40 11 0 0 0 40 0" fill="none" stroke="#3E3A39" stroke-width="9" stroke-linecap="round"/>
+              <path d="M-40 0 A40 11 0 0 0 40 0" fill="none" stroke="#F6D27A" stroke-width="3.6" stroke-linecap="round"/>
+            </g></g>
+          </g>
+        </g>
+
+        <!-- 左大樹 -->
+        <g class="sway">
+          <rect x="60" y="206" width="9" height="58" rx="4" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+          <circle cx="64" cy="194" r="27" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+          <path d="M48 186 Q52 178 60 175" fill="none" stroke="#FFFCF6" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="73" cy="200" r="3.4" fill="#F2A497"/>
+          <circle cx="56" cy="204" r="3.4" fill="#F2A497"/>
+          <circle cx="70" cy="184" r="3.4" fill="#F2A497"/>
+        </g>
+        <!-- 右小樹 -->
+        <g class="sway" style="animation-delay:-2s">
+          <rect x="318" y="214" width="8" height="46" rx="4" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+          <circle cx="322" cy="204" r="22" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+          <path d="M308 198 Q311 192 317 190" fill="none" stroke="#FFFCF6" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="330" cy="208" r="3" fill="#F2A497"/>
+          <circle cx="316" cy="212" r="3" fill="#F2A497"/>
+        </g>
+
+        <!-- 鐘樓 -->
+        <rect x="162" y="64" width="36" height="62" rx="8" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
+        <path d="M155 68 L180 36 L205 68 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M180 36V20" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"/>
+        <path class="flag" d="M180 20 L198 26 L180 32 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="180" cy="92" r="13" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+        <path class="hour" d="M180 92L186 95" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="minute" d="M180 92V83" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="180" cy="92" r="1.8" fill="#3E3A39"/>
+
+        <!-- 圖書館本體 -->
+        <rect x="112" y="118" width="136" height="148" rx="12" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
+        <rect x="104" y="110" width="152" height="20" rx="10" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+        <text x="180" y="124" text-anchor="middle" font-size="13" fill="#3E3A39" style="letter-spacing:2px">中正大學圖書館</text>
+
+        <use class="win lit" href="#win" x="122" y="140"/>
+        <use class="win" href="#win" x="153" y="140"/>
+        <use class="win lit" href="#win" x="185" y="140" style="animation-delay:-1.5s"/>
+        <use class="win" href="#win" x="216" y="140"/>
+        <use class="win" href="#win" x="122" y="170"/>
+        <use class="win lit" href="#win" x="153" y="170" style="animation-delay:-3s"/>
+        <use class="win" href="#win" x="185" y="170"/>
+        <use class="win lit" href="#win" x="216" y="170" style="animation-delay:-.8s"/>
+        <use class="win lit" href="#win" x="122" y="200" style="animation-delay:-2.2s"/>
+        <use class="win" href="#win" x="216" y="200"/>
+
+        <path d="M164 266 V232 A16 16 0 0 1 196 232 V266 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="189" cy="246" r="2.5" fill="#3E3A39"/>
+
+        <!-- 地面 -->
+        <path d="M-5 254 C60 246 120 258 180 256 C240 254 300 246 365 252 V330 H-5 Z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M166 262 C150 282 196 292 160 322 L216 322 C232 294 204 282 194 262 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="152" y="252" width="56" height="11" rx="4" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
+
+        <!-- 前景：書堆 -->
+        <g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round">
+          <rect x="14" y="292" width="68" height="16" rx="5" fill="#F2A497"/>
+          <rect x="22" y="276" width="56" height="16" rx="5" fill="#F6D27A"/>
+          <rect x="18" y="260" width="60" height="16" rx="5" fill="#A8D3E6"/>
+        </g>
+        <path d="M26 296v8M32 296v8M34 280v8M30 264v8" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+
+        <!-- 前景：路牌 -->
+        <rect x="296.5" y="286" width="7" height="24" rx="3" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+        <rect x="258" y="262" width="84" height="26" rx="9" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+        <text x="300" y="280" text-anchor="middle" font-size="13" fill="#3E3A39">離線星球</text>
+
+        <!-- 前景：小花 -->
+        <g class="sway">
+          <path d="M122 296v12" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="122" cy="292" r="5.5" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5"/>
+          <circle cx="122" cy="292" r="1.8" fill="#F6D27A"/>
+        </g>
+        <g class="sway" style="animation-delay:-1.6s">
+          <path d="M242 300v12" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="242" cy="296" r="5.5" fill="#F6D27A" stroke="#3E3A39" stroke-width="2.5"/>
+          <circle cx="242" cy="296" r="1.8" fill="#F2A497"/>
+        </g>
+
+        <!-- 火箭與軌跡 -->
+        <path class="trail" d="M52 148 C42 158 36 168 22 178" fill="none" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+        <g transform="translate(70 112) rotate(38)">
+          <g class="rocket">
+            <path d="M-9 6 L-19 20 L-9 18 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M9 6 L19 20 L9 18 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            <path class="flame" d="M-5 20 Q0 42 5 20 Z" fill="#F6D27A" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M0 -28 C13 -15 13 7 9 19 H-9 C-13 7 -13 -15 0 -28 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M0 -28 C6 -22 9 -17 10 -13 H-10 C-9 -17 -6 -22 0 -28 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="0" cy="-1" r="5.5" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"/>
+          </g>
+        </g>
+
+        <!-- 會拍翅膀的書 -->
+        <g transform="translate(300 140)">
+          <g class="bird">
+            <g class="wl">
+              <path d="M0 8 Q-14 -2 -32 4 L-32 16 Q-14 10 0 20 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M0 6 Q-13 -3 -27 1 L-27 11 Q-13 6 0 14 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            </g>
+            <g class="wr">
+              <path d="M0 8 Q14 -2 32 4 L32 16 Q14 10 0 20 Z" fill="#F2A497" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M0 6 Q13 -3 27 1 L27 11 Q13 6 0 14 Z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="title-block">
+      <p class="date-pill">115.11.30 – 12.10</p>
+      <h1><span class="t1">離線星球</span><span class="en">OFFLINE : PLANET</span><span class="t2">2026圖書館週</span><span class="en2">Library Week</span></h1>
+      <p class="lead">一場暫時放下手機、AI與快速資訊的生活實驗。<br>偶遇一本未知的書、邂逅一個陌生的人，用溫度翻開這個冬天。</p>
+    </div>
+  </section>
+
+  <!-- 日程 -->
+  <section id="schedule" aria-labelledby="schTitle">
+    <div class="sec-head">
+      <h2 id="schTitle">活動日程</h2>
+      <p>點選日期，看看那天的時間軸（也可以左右滑動切換）</p>
+    </div>
+    <div class="strip-wrap">
+      <div class="day-strip" id="dayStrip" role="tablist" aria-label="選擇日期"></div>
+    </div>
+    <div id="panel" role="tabpanel" tabindex="-1"></div>
+  </section>
+
+  <!-- 抽獎品項 -->
+  <section id="prizes" aria-labelledby="prTitle">
+    <div class="sec-head">
+      <h2 id="prTitle">抽獎品項</h2>
+      <p>共 4 項好禮，等你來抽</p>
+    </div>
+    <div class="prize-grid">
+      <article class="prize" style="--c:var(--sky);--i:0">
+        <span class="no">獎項 01</span>
+        <div class="prize-img" data-prize="木質藍芽音箱">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="22" y="28" width="76" height="70" rx="16" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+            <path d="M30 40q15-5 30 0t30 0M30 88q15-5 30 0t30 0" fill="none" stroke="#F2A497" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="60" cy="52" r="9" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/><circle cx="60" cy="52" r="3.5" fill="#F2A497"/>
+            <circle cx="60" cy="76" r="13" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/><circle cx="60" cy="76" r="6" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2.5"/>
+            <circle cx="96" cy="28" r="11" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/>
+            <path d="M92.5 24.5 99 31l-3.5 3V22L99 25 92.5 31.5" fill="none" stroke="#3E3A39" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(16 22) scale(1)"><use class="tw" href="#star" fill="#F2A497" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-0.4s"/></g>
+          </svg>
+        </div>
+        <h3>木質藍芽音箱</h3>
+      </article>
+      <article class="prize" style="--c:var(--yellow);--i:1">
+        <span class="no">獎項 02</span>
+        <div class="prize-img" data-prize="Kodak底片相機">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="26" y="26" width="24" height="12" rx="4" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
+            <rect x="12" y="38" width="96" height="58" rx="12" fill="#F2A497" stroke="#3E3A39" stroke-width="3"/>
+            <path d="M12 50a12 12 0 0 1 12-12h72a12 12 0 0 1 12 12v8H12z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="86" y="44" width="14" height="8" rx="3" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2.5"/>
+            <circle cx="60" cy="77" r="20" fill="#FFFCF6" stroke="#3E3A39" stroke-width="3"/>
+            <circle cx="60" cy="77" r="12" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/>
+            <circle cx="55.5" cy="72.5" r="3" fill="#FFFCF6"/>
+            <circle cx="24" cy="48" r="2.6" fill="#3E3A39"/>
+            <g transform="translate(104 24) scale(1.1)"><use class="tw" href="#star" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-1.2s"/></g>
+          </svg>
+        </div>
+        <h3>Kodak底片相機</h3>
+      </article>
+      <article class="prize" style="--c:var(--coral);--i:2">
+        <span class="no">獎項 03</span>
+        <div class="prize-img" data-prize="運動手環">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M46 8h28l4 26H42z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M42 86h36l-4 26H46z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="60" cy="100" r="2.2" fill="#3E3A39"/><circle cx="60" cy="106" r="2.2" fill="#3E3A39"/>
+            <rect x="34" y="30" width="52" height="60" rx="17" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+            <rect x="41" y="37" width="38" height="46" rx="12" fill="#3E3A39"/>
+            <path d="M46 50h6l3-6 4 11 3-5h9" fill="none" stroke="#FFFCF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M60 76c-9-6-13-10-13-15a6.5 6.5 0 0 1 13-2 6.5 6.5 0 0 1 13 2c0 5-4 9-13 15z" fill="#F2A497"/>
+            <g transform="translate(100 30) scale(1)"><use class="tw" href="#star" fill="#F6D27A" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-0.8s"/></g>
+            <g transform="translate(18 84) scale(1)"><use class="tw" href="#star" fill="#A8D3E6" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-1.8s"/></g>
+          </svg>
+        </div>
+        <h3>運動手環</h3>
+      </article>
+      <article class="prize" style="--c:var(--green);--i:3">
+        <span class="no">獎項 04</span>
+        <div class="prize-img" data-prize="超商禮物卡">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <g transform="rotate(-8 60 60)">
+              <rect x="12" y="30" width="96" height="60" rx="12" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/>
+              <path d="M12 44h96v12H12z" fill="#F6D27A" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="22" y="66" width="30" height="14" rx="5" fill="#FFFCF6" stroke="#3E3A39" stroke-width="2.5"/>
+              <path d="M86 63l2.6 6 6.4.5-4.9 4.1 1.6 6.4-5.7-3.4-5.7 3.4 1.6-6.4-4.9-4.1 6.4-.5z" fill="#F2A497" stroke="#3E3A39" stroke-width="2.5" stroke-linejoin="round"/>
+            </g>
+            <g transform="translate(20 20) scale(1.1)"><use class="tw" href="#star" fill="#F6D27A" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-0.2s"/></g>
+            <g transform="translate(104 104) scale(0.9)"><use class="tw" href="#star" fill="#F2A497" stroke="#3E3A39" stroke-width="2" stroke-linejoin="round" style="animation-delay:-1.5s"/></g>
+          </svg>
+        </div>
+        <h3>超商禮物卡</h3>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <span class="bar" aria-hidden="true"></span>
+    活動資訊如有異動，以圖書館公告為準。
+  </footer>
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  const WD = ['日','一','二','三','四','五','六'];
+  const TYPES = {
+    talk:   {label:'講座課程', color:'var(--sky)',    icon:'<path d="M4 5h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8l-5 4v-4H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/>'},
+    fun:    {label:'體驗表演', color:'var(--coral)',  icon:'<path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/>'},
+    point:  {label:'集點截止', color:'var(--coral)',  icon:'<circle cx="12" cy="13" r="7"/><path d="M12 9v4l2.5 2M5 4 3 6M19 4l2 2"/>'},
+    market: {label:'趣味市集', color:'var(--yellow)', icon:'<path d="M3 9l2-5h14l2 5z"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/>'},
+    show:   {label:'展示展映', color:'var(--green)',  icon:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="9" r="1.2"/>'}
+  };
+  const LINK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+  const PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.6-6-10a6 6 0 1 1 12 0c0 4.4-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>';
+
+  // 日期皆為西元（民國 115 = 2026，116 = 2027）
+  const EVENTS = [
+    {id:1,  title:'觀看機制中的折返', tag:'藝術家座談', s:'2026-11-30', e:'2026-11-30', time:'14:00-16:00', place:'圖書館1F 多功能展演廳', type:'talk',
+     link:'', desc:'由藝術家尹信方老師、謝其昌老師、鄭朝仁老師與李一星老師帶來的精彩對談，以「觀者」為核心，透過直面敘事懸置的狀態，在閱讀與觀看之間映照內在自我，開啟一場與自身對話的探索之旅。'},
+    {id:2,  title:'與書的盲目約會', tag:'趣味互動活動', s:'2026-12-01', e:'2026-12-10', place:'圖書館2F 新書展示區前', type:'show', range:'12/1–12/10'},
+    {id:3,  title:'校園書活節', tag:'圖書X美食X手作市集', s:'2026-12-01', e:'2026-12-03', time:'10:00-16:00', place:'圖書館門口廣場', type:'market', range:'12/1–12/3'},
+    {id:4,  title:'星際情報站', tag:'圖書館資源市集', s:'2026-12-01', e:'2026-12-01', time:'10:00-16:00', place:'圖書館2F 大廳', type:'market'},
+    {id:5,  title:'Openbook好書獎', tag:'主題書展', s:'2026-12-01', e:'2027-01-31', place:'圖書館2F 新書展示區', type:'show', range:'12/1–116/1/31'},
+    {id:6,  title:'出走放映室', tag:'主題影展', s:'2026-12-01', e:'2027-01-31', place:'圖書館2F 多媒體資料區', type:'show', range:'12/1–116/1/31'},
+    {id:7,  title:'探索者任務代號 MISSION 01：EndNote', s:'2026-12-02', e:'2026-12-02', time:'14:00-16:00', place:'圖書館8F 814教室', type:'talk'},
+    {id:8,  title:'靈魂邂逅所：深刻地認識一個人 連結卡牌體驗', s:'2026-12-03', e:'2026-12-03', time:'14:00-16:00', place:'圖書館3F 暖心窩', type:'fun'},
+    {id:9,  title:'翻開繪本，種一棵屬於自己的樹：療癒書寫工作坊', s:'2026-12-04', e:'2026-12-04', time:'10:00-12:00', place:'圖書館B1 藝術工坊', type:'fun'},
+    {id:10, title:'靈魂邂逅所：深刻地認識一個人 連結卡牌體驗', s:'2026-12-07', e:'2026-12-07', time:'14:00-16:00', place:'圖書館3F 暖心窩', type:'fun'},
+    {id:11, title:'從阿里山到山丘｜歌聲裡的時光記憶音樂會', s:'2026-12-08', e:'2026-12-08', time:'19:00-21:00', place:'活動中心演藝廳', type:'fun'},
+    {id:12, title:'探索者任務代號 MISSION 02：Turnitin', s:'2026-12-08', e:'2026-12-08', time:'14:00-16:00', place:'圖書館8F 814教室', type:'talk'},
+    {id:13, title:'偶遇計畫，閱讀的另一種可能：二手書刊拍賣', s:'2026-12-08', e:'2026-12-09', time:'10:00-16:30', place:'圖書館2F 大廳', type:'market', range:'12/8–12/9'},
+    {id:14, title:'活動集點截止', s:'2026-12-10', e:'2026-12-10', deadline:true, type:'point', range:'12/10 截止'}
+  ];
+
+  const pad = n => String(n).padStart(2,'0');
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const roc = d => `${d.y - 1911}/${d.m}/${d.d}`;
+  const at = (iso, hhmm) => new Date(`${iso}T${hhmm}:00+08:00`);
+
+  // 日期列：11/30 – 12/15
+  const DAYS = [];
+  const D0 = Date.UTC(2026, 10, 30);
+  const HIDDEN = ['2026-12-05', '2026-12-06']; // 週六、週日不顯示
+  for (let i = 0; i < 11; i++) { // 11/30 – 12/10
+    const dt = new Date(D0 + i * 864e5);
+    if (HIDDEN.includes(dt.toISOString().slice(0,10))) continue;
+    DAYS.push({iso: dt.toISOString().slice(0,10), y: dt.getUTCFullYear(), m: dt.getUTCMonth()+1, d: dt.getUTCDate(), wd: dt.getUTCDay()});
+  }
+  const KEYS = [...DAYS.map(d => d.iso), 'all'];
+  const dayOf = iso => DAYS.find(d => d.iso === iso);
+  const inRange = (ev, iso) => ev.s <= iso && iso <= ev.e;
+  const timedOn = iso => EVENTS.filter(ev => (ev.time || ev.deadline) && inRange(ev, iso)).sort((a,b) => (a.time || '99').localeCompare(b.time || '99') || a.id - b.id);
+  const ongoingOn = iso => EVENTS.filter(ev => !ev.time && !ev.deadline && inRange(ev, iso));
+
+
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const behavior = () => mq.matches ? 'auto' : 'smooth';
+  const $ = id => document.getElementById(id);
+  const strip = $('dayStrip'), panel = $('panel');
+  let current = null;
+
+  /* ---------- 卡片 ---------- */
+  function card(ev, iso) {
+    const t = TYPES[ev.type];
+    let live = false;
+    if (ev.time && iso) {
+      const [a, b] = ev.time.split('-');
+      const n = Date.now();
+      live = n >= at(iso,a) && n < at(iso,b);
+    }
+    return `<article class="ev" style="--c:${t.color}">
+      <div class="ev-top">
+        <span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true">${t.icon}</svg>${esc(ev.tag || t.label)}</span>
+        ${ev.range ? `<span class="tag">${ev.range}</span>` : ''}
+        ${live ? '<span class="tag live">進行中</span>' : ''}
+      </div>
+      <h4 class="ev-title">${esc(ev.title)}</h4>
+      ${ev.place ? `<p class="ev-place">${PIN}<span>${esc(ev.place)}</span></p>` : ''}
+      ${ev.link !== undefined ? `<p class="ev-link">${LINK}${ev.link ? `<a href="${esc(ev.link)}" target="_blank" rel="noopener">活動報名連結</a>` : '<span>活動報名連結（待補上）</span>'}</p>` : ''}
+      ${ev.desc ? `<p class="ev-desc">${esc(ev.desc)}</p>` : ''}
+    </article>`;
+  }
+
+  const FLAG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h12l-3 4 3 4H6z"/></svg>';
+  const EMPTY = `<div class="empty bounce" style="--i:1">
+    <svg viewBox="0 0 140 100" aria-hidden="true">
+      <rect x="24" y="24" width="88" height="62" rx="14" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M44 24v62" stroke="#3E3A39" stroke-width="3"/>
+      <path d="M58 52q6 6 12 0M82 52q6 6 12 0M71 64q4 4 8 0" fill="none" stroke="#3E3A39" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="58" cy="62" r="4" fill="#F2A497"/><circle cx="96" cy="62" r="4" fill="#F2A497"/>
+      <text class="zz" x="108" y="22" font-size="16" fill="#3E3A39" style="font-family:inherit">z z</text>
+    </svg>
+    <p>這天沒有定時活動，來逛逛展期中的展覽吧！</p>
+  </div>`;
+
+  /* ---------- 面板 ---------- */
+  function renderDay(iso) {
+    const d = dayOf(iso);
+    const timed = timedOn(iso), ongoing = ongoingOn(iso);
+    const groups = [];
+    timed.forEach(ev => {
+      let g = groups.find(x => x.time === ev.time);
+      if (!g) { g = {time: ev.time, list: []}; groups.push(g); }
+      g.list.push(ev);
+    });
+
+    let i = 0;
+    let html = `<div class="day-head bounce" style="--i:${i++}">
+      <h3>${d.m}月${d.d}日<span class="wd">週${WD[d.wd]}</span></h3>
+      <p>${roc(d)}・${timed.length ? `${timed.length} 項日程` : '沒有定時活動'}${ongoing.length ? `・${ongoing.length} 項展期中` : ''}</p>
+    </div>`;
+
+    if (groups.length) {
+      html += '<ol class="timeline">' + groups.map(g => {
+        const [a, b] = g.time ? g.time.split('-') : ['當日', '截止'];
+        const c = TYPES[g.list[0].type].color;
+        return `<li class="tl-group bounce" style="--i:${i++}">
+          <div class="tl-time"><b>${a}</b><span>${b}</span></div>
+          <div class="tl-dot" style="--c:${c}"></div>
+          <div class="tl-cards">${g.list.map(ev => card(ev, iso)).join('')}</div>
+        </li>`;
+      }).join('') + '</ol>';
+    } else {
+      html += EMPTY;
+    }
+
+    if (ongoing.length) {
+      html += `<div class="bounce" style="--i:${i++}">
+        <h3 class="sub-title">${FLAG}期間限定展期中</h3>
+        <p class="sub-note">圖書館週活動期間皆可參與觀展</p>
+        <div class="ongoing-list">${ongoing.map(ev => card(ev)).join('')}</div>
+      </div>`;
+    }
+    return html;
+  }
+
+  function renderAll() {
+    const list = EVENTS.filter(ev => !ev.time && !ev.deadline).sort((a,b) => a.e.localeCompare(b.e) || a.id - b.id);
+    return `<div class="day-head bounce" style="--i:0">
+        <h3>期間展限定</h3>
+        <p>圖書館週活動期間皆可參與觀展</p>
+      </div>
+      <div class="ongoing-list">${list.map((ev, k) => `<div class="bounce" style="--i:${k+1}">${card(ev)}</div>`).join('')}</div>`;
+  }
+
+  /* ---------- 日期列 ---------- */
+  strip.innerHTML = DAYS.map(d => {
+    const has = timedOn(d.iso).length > 0;
+    const we = d.wd === 0 || d.wd === 6;
+    return `<button class="chip${we ? ' we' : ''}" role="tab" id="tab-${d.iso}" data-key="${d.iso}" aria-selected="false" aria-controls="panel" tabindex="-1"
+      aria-label="${d.m}月${d.d}日 週${WD[d.wd]}${has ? '，有定時活動' : ''}">
+      <small>${d.m}月</small><span class="n">${d.d}</span><span class="w">週${WD[d.wd]}</span><i class="dot${has ? ' on' : ''}"></i>
+    </button>`;
+  }).join('') + `<button class="chip all" role="tab" id="tab-all" data-key="all" aria-selected="false" aria-controls="panel" tabindex="-1" aria-label="期間展限定">
+      <small>期間</small><span class="n">展</span><span class="w">限定</span><i class="dot"></i>
+    </button>`;
+
+  function select(key, opts = {}) {
+    if (!KEYS.includes(key)) return;
+    const prev = strip.querySelector('.is-active');
+    if (prev && prev.dataset.key !== key) {
+      prev.classList.remove('is-active');
+      prev.setAttribute('aria-selected', 'false');
+      prev.tabIndex = -1;
+    }
+    const chip = $('tab-' + key);
+    if (current === key && chip.classList.contains('is-active') && !opts.force) return;
+    chip.classList.add('is-active');
+    chip.setAttribute('aria-selected', 'true');
+    chip.tabIndex = 0;
+    if (opts.focus) chip.focus({preventScroll: true});
+    strip.scrollTo({left: chip.offsetLeft - (strip.clientWidth - chip.offsetWidth) / 2, behavior: opts.instant ? 'auto' : behavior()});
+
+    current = key;
+    panel.setAttribute('aria-labelledby', 'tab-' + key);
+    panel.innerHTML = key === 'all' ? renderAll() : renderDay(key);
+
+    if (!opts.instant) {
+      const wrap = strip.parentElement;
+      const top = panel.getBoundingClientRect().top + window.scrollY - wrap.getBoundingClientRect().height - 58 - 6;
+      if (window.scrollY > top) window.scrollTo({top, behavior: behavior()});
+    }
+  }
+
+  strip.addEventListener('click', e => {
+    const c = e.target.closest('.chip');
+    if (c) select(c.dataset.key);
+  });
+  strip.addEventListener('keydown', e => {
+    const i = KEYS.indexOf(current);
+    let n = null;
+    if (e.key === 'ArrowRight') n = Math.min(KEYS.length - 1, i + 1);
+    else if (e.key === 'ArrowLeft') n = Math.max(0, i - 1);
+    else if (e.key === 'Home') n = 0;
+    else if (e.key === 'End') n = KEYS.length - 1;
+    if (n !== null) { e.preventDefault(); select(KEYS[n], {focus: true}); }
+  });
+
+  // 左右滑動換日
+  let t0 = null;
+  panel.addEventListener('touchstart', e => { t0 = {x: e.touches[0].clientX, y: e.touches[0].clientY}; }, {passive: true});
+  panel.addEventListener('touchend', e => {
+    if (!t0) return;
+    const dx = e.changedTouches[0].clientX - t0.x, dy = e.changedTouches[0].clientY - t0.y;
+    t0 = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.6) {
+      const n = KEYS.indexOf(current) + (dx < 0 ? 1 : -1);
+      if (n >= 0 && n < KEYS.length) select(KEYS[n]);
+    }
+  }, {passive: true});
+
+  /* ---------- 選單高亮 ---------- */
+  const links = [...document.querySelectorAll('.nav nav a')];
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        links.forEach(a => {
+          const on = a.dataset.sec === en.target.id;
+          a.classList.toggle('on', on);
+          if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+      });
+    }, {rootMargin: '-35% 0px -60% 0px'});
+    ['home', 'schedule', 'prizes'].forEach(id => io.observe($(id)));
+  }
+
+  /* ---------- 初始日期 ---------- */
+  const todayIso = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+  const nextDay = DAYS.find(d => d.iso >= todayIso);
+  const first = nextDay ? nextDay.iso : (todayIso <= '2027-01-31' ? 'all' : DAYS[0].iso);
+  select(first, {instant: true, force: true});
+
+  /* ---------- 獎品卡片進場 ---------- */
+  if ('IntersectionObserver' in window) {
+    const po = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('bounce'); po.unobserve(en.target); }
+    }), {threshold: .3});
+    document.querySelectorAll('.prize').forEach(el => po.observe(el));
+  }
+
+  /* ---------- 星空背景 ---------- */
+  const host = $('sky');
+  let skyW = 0;
+  function drawSky() {
+    const W = Math.max(window.innerWidth, 320), H = Math.max(window.innerHeight, 900);
+    skyW = W;
+    let seed = 20261130;
+    const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+    const cols = ['#FFFCF6', '#FFFCF6', '#FFFCF6', '#F6D27A', '#A8D3E6'];
+    let s = '';
+    const dots = Math.round(W * H / 4200);
+    for (let i = 0; i < dots; i++) {
+      const x = (rnd() * W).toFixed(1), y = (rnd() * H).toFixed(1), r = (0.8 + rnd() * 1.5).toFixed(2);
+      const c = cols[Math.floor(rnd() * cols.length)];
+      const tw = rnd() < .55 ? ` class="st" style="animation-delay:-${(rnd() * 4).toFixed(2)}s;animation-duration:${(2.6 + rnd() * 3).toFixed(1)}s"` : '';
+      s += `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"${tw}/>`;
+    }
+    const sparks = Math.round(W * H / 22000) + 8;
+    for (let i = 0; i < sparks; i++) {
+      const x = (rnd() * W).toFixed(1), y = (rnd() * H).toFixed(1), k = (0.6 + rnd() * 0.7).toFixed(2);
+      const c = rnd() < .6 ? '#F6D27A' : '#FFFCF6';
+      s += `<g transform="translate(${x} ${y}) scale(${k})"><path class="st" style="animation-delay:-${(rnd() * 4).toFixed(2)}s" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z" fill="${c}"/></g>`;
+    }
+    host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">${s}</svg>`;
+  }
+  drawSky();
+  let rz;
+  window.addEventListener('resize', () => {
+    clearTimeout(rz);
+    rz = setTimeout(() => { if (window.innerWidth !== skyW) drawSky(); }, 200);
+  });
+})();
+</script>
+</body>
+</html>
