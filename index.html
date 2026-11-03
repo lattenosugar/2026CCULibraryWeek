@@ -116,7 +116,7 @@ h1{margin:0;line-height:1.25}
 .tag{padding:0 9px;font-size:12px;border:2.5px dashed var(--ink);border-radius:999px}
 .tag.live{background:var(--ink);color:var(--paper);border-style:solid;display:inline-flex;align-items:center;gap:5px}
 .tag.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);animation:pulse 1.2s ease-in-out infinite}
-.ev-title{margin:0;font-size:18px;line-height:1.5}
+.ev-title{margin:0;font-size:18px;line-height:1.5;font-weight:700}
 .ev-place,.ev-link{display:flex;gap:6px;align-items:flex-start;margin:8px 0 0;font-size:14px;line-height:1.5}
 .ev-link a{color:var(--ink);text-underline-offset:3px}
 .ev-desc{margin:12px 0 0;padding-top:12px;border-top:2.5px dashed var(--ink);font-size:14px;line-height:1.8}
@@ -126,7 +126,7 @@ h1{margin:0;line-height:1.25}
 .ev-desc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .ev-desc li{position:relative;padding-left:1.2em}
 .ev-desc li::before{content:"－";position:absolute;left:0}
-.ev-desc mark.hl{background:var(--sky);color:var(--ink);padding:.05em .4em;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ev-desc mark.hl{background:var(--hl,var(--sky));color:var(--ink);padding:.05em .4em;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .ev-desc b{background:var(--paper);padding:0 6px;border-radius:8px}
 .ev-place svg,.ev-link svg{flex:0 0 auto;width:16px;height:16px;margin-top:3px;fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 
@@ -159,6 +159,8 @@ h1{margin:0;line-height:1.25}
 .rule mark{background:var(--yellow);color:var(--ink);padding:0 6px;border-radius:8px}
 
 footer{margin:52px 0 32px;text-align:center;font-size:13px;color:var(--muted-sky)}
+footer .copy{display:grid;gap:2px;margin-top:14px;font-style:normal;line-height:1.8}
+footer .copy a{color:inherit;text-underline-offset:3px}
 footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px solid var(--ink);border-radius:999px;background:var(--sky)}
 
 /* ---------- 動畫 ---------- */
@@ -532,6 +534,11 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
   <footer>
     <span class="bar" aria-hidden="true"></span>
     活動資訊如有異動，以圖書館公告為準。
+    <address class="copy">
+      <span>Copyright © 國立中正大學圖書館</span>
+      <span>(05)2720411分機15101｜<a href="mailto:libref@lib.ccu.edu.tw">libref@lib.ccu.edu.tw</a></span>
+      <span>維護日期：2026.11</span>
+    </address>
   </footer>
 </main>
 
@@ -548,6 +555,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     show:   {label:'展示展映', color:'var(--green)',  icon:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="9" r="1.2"/>'}
   };
   const LINK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+  const HL = {show: 'var(--coral)', talk: 'var(--yellow)', fun: 'var(--yellow)', point: 'var(--yellow)'}; // 標註色：和卡片底色區隔
   const PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.6-6-10a6 6 0 1 1 12 0c0 4.4-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>';
 
   // 日期皆為西元（民國 115 = 2026，116 = 2027）
@@ -555,7 +563,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     {id:1, title:"觀看機制中的折返", tag:"藝術家座談", s:"2026-11-30", e:"2026-11-30", time:"14:00-16:00", place:"圖書館1F 多功能展演廳", type:"talk",
      link:"https://events.lib.ccu.edu.tw/event/detail/list/2124/", desc:["由藝術家尹信方老師、謝其昌老師、鄭朝仁老師與李一星老師帶來的精彩對談，以「觀者」為核心，透過直面敘事懸置的狀態，在閱讀與觀看之間映照內在自我，開啟一場與自身對話的探索之旅。"]},
     {id:2, title:"與書的盲目約會", tag:"趣味互動活動", s:"2026-12-01", e:"2026-12-10", place:"圖書館2F 新書展示區前", type:"show", range:"12/1–12/10",
-     desc:["冬日裡，一場充滿未知的相遇，即將展開。\n別看書名、不問作者，來到約會現場，只憑簡短文字帶來的想像，挑選最讓你心動的那本神祕禮物並借它回家。直到親手拆開包裝，才能揭曉這份驚喜與神秘，看看命運為你準備了什麼樣的閱讀邂逅呢？"], guide:{"title": "【約會指南】", "items": ["尋找心動對象：閱讀盲書上的文字介紹，挑選讓你心動的書，並拍下拆封前的模樣。", "正式約會前，請保持神祕！：請至服務櫃台辦理借閱（勿使用自助借書機），切勿偷看電腦螢幕！借閱一本即可集點卡集 1 點。", "揭開神祕面紗：找個舒服的角落，小心拆開盲書，享受與未知好書相遇的驚喜！", "分享約會心情：將盲書照片及活動心得或閱讀感想（不限字數），上傳 IG 限時動態或 Threads（二擇一），並標記圖書館帳號 @ccu.library。", "分享即可領好禮：出示發文畫面，即可至圖書館服務櫃台兌換實用小禮物，每篇貼文限兌換一份。"]}},
+     desc:["冬日裡，一場充滿未知的相遇，即將展開。\n別看書名、不問作者，來到約會現場，只憑簡短文字帶來的想像，挑選最讓你心動的那本神祕禮物並借它回家。直到親手拆開包裝，才能揭曉這份驚喜與神秘，看看命運為你準備了什麼樣的閱讀邂逅呢？"], guide:{"title": "【約會指南】", "items": ["尋找心動對象：閱讀盲書上的文字介紹，挑選讓你心動的書，並拍下拆封前的模樣。", "發送神秘約會邀請＆集點：請至服務櫃檯辦理借閱（請勿使用自助借書機），過程中請勿偷看電腦螢幕，保留神秘驚喜！每借閱一次，集點卡即可集 1 點。", "揭開神祕面紗：找個喜歡的角落，小心拆開盲書，享受與未知相遇的驚喜。", "分享約會心情：將[[盲書拆封前照片]]及[[活動心得或閱讀感想（至少10字）]]，上傳 IG限時動態或 Threads發文，並標記圖書館帳號 @ccu.library", "截圖換好禮：出示發文畫面，即可至圖書館服務櫃台兌換實用小禮物，每篇貼文限兌換一份。"]}},
     {id:3, title:"校園書活節", tag:"曬書×手作×選物市集", s:"2026-12-01", e:"2026-12-03", time:"10:00-16:00", place:"圖書館門口廣場", type:"market", range:"12/1–12/3",
      desc:["放下手機，暫別螢幕，重新感受與書、人、生活的真實連結～\n從逛曬書到體驗手作、探索特色好物，放慢腳步，在真實的相遇與交流中感受驚喜與樂趣！"]},
     {id:4, title:"星際情報站", tag:"圖書館資源市集", s:"2026-12-01", e:"2026-12-01", time:"10:00-16:00", place:"圖書館2F 大廳", type:"market",
@@ -616,7 +624,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
     const g = ev.guide
       ? `<p class="ev-sub">${esc(ev.guide.title)}</p><ul>${ev.guide.items.map(t => {
           const k = t.indexOf('：');
-          return `<li>${k > 0 ? `<b>${esc(t.slice(0, k))}</b>：${esc(t.slice(k + 1))}` : esc(t)}</li>`;
+          return `<li>${k > 0 ? `<b>${esc(t.slice(0, k))}</b>：${fmt(t.slice(k + 1))}` : esc(t)}</li>`;
         }).join('')}</ul>`
       : '';
     return `<div class="ev-desc">${ps}${g}</div>`;
@@ -630,7 +638,7 @@ footer .bar{display:block;width:72px;height:10px;margin:0 auto 14px;border:3px s
       const n = Date.now();
       live = n >= at(iso,a) && n < at(iso,b);
     }
-    return `<article class="ev" style="--c:${t.color}">
+    return `<article class="ev" style="--c:${t.color};--hl:${HL[ev.type] || 'var(--sky)'}">
       <div class="ev-top">
         <span class="badge"><svg viewBox="0 0 24 24" aria-hidden="true">${t.icon}</svg>${esc(ev.tag || t.label)}</span>
         ${ev.range ? `<span class="tag">${ev.range}</span>` : ''}
